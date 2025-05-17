@@ -22,16 +22,18 @@ export default function Form() {
 
     try {
       // Replace this URL with your Google Apps Script Web App URL
-      const scriptURL = 'https://script.google.com/macros/s/AKfycbwoq_kGRRHiE_wT4aA-pTZrk_FJ90JOoi1Nh276LcJUVUTBxrgvsX9oCirrWh9HiZSY/exec';
+      const scriptURL = 'https://script.google.com/macros/s/AKfycbwkCwcZmbsfAXW32lo138ZCgE88Mb88LMdRA-xeYjISqjDa6Pp5mbw9Tq_ljP2IFUMF/exec';
       
       const response = await fetch(scriptURL, {
         method: 'POST',
-        body: JSON.stringify(formData),
+        body: JSON.stringify({...formData, pageOrigin: window.location.origin, email: 'office@wicketrecords.com'}),
         headers: {
           'Content-Type': 'application/json'
         },
         mode: 'no-cors'
       });
+
+      console.log(response);
       
       // Since no-cors mode doesn't give us response details,
       // we'll assume it was successful if no error was thrown
